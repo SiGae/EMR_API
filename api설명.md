@@ -40,8 +40,13 @@ parameter
 ## 테이블 row 조회
 
 /search/person - 환자 테이블 조회
+
 /search/visit_occurrence - 방문 테이블 조회
+
 /search/condition_occurrence - 진단 정보 조회
+
 /search/drug_exposure - 의약품 처방 정보 조회
+
 /search/death - 사망 정보 조회
+
 /search/concept - concept 정보 조회
