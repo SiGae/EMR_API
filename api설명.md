@@ -50,3 +50,10 @@ parameter
 /search/death - 사망 정보 조회
 
 /search/concept - concept 정보 조회
+
+parameter
+
+> keyword = column과 함께 사용, column내 검색할 키워드
+> column = 검색할 column지정
+> limit = 출력할 데이터 양
+> offset = 출력할 페이지 번호
