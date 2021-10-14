@@ -33,7 +33,7 @@ def get_person(db):
 
     response_data = {
         '전체 환자 수': [dict(total_count[0])],
-        '성별 방문 수': l_convert.l_convert.do(gender_count),
+        '성별 방문 수': l_convert.do(gender_count),
         '인종별 방문 수': l_convert.do(race_count),
         '민족별 방문 수': l_convert.do(ethnicity_count),
         '사망 환자 수': [dict(death_count[0])]

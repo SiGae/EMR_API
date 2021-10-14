@@ -29,9 +29,9 @@ def get_person(param, db):
                              Person.race_source_concept_id,
                              Person.ethnicity_source_value
                              ) \
-        .join(person_gender, person_gender.concept_id == Person.gender_concept_id, isouter=True) \
-        .join(person_race, person_race.concept_id == Person.race_concept_id, isouter=True) \
-        .join(person_ethnicity, person_ethnicity.concept_id == Person.ethnicity_concept_id, isouter=True)
+        .join(person_gender, Person.gender_concept_id == person_gender.concept_id) \
+        .join(person_race, Person.race_concept_id == person_race.concept_id) \
+        .join(person_ethnicity, Person.ethnicity_concept_id == person_ethnicity.concept_id)
 
     response_data = __filter_page__(response_data, param).all()
     response_data = l_convert.convert_dict(response_data)
@@ -64,8 +64,8 @@ def get_visit_occurrence(param, db):
                              visit_discharge.concept_name.label('visit_discharge_name'),
 
                              ) \
-        .join(visit_type, visit_type.concept_id == VisitOccurrence.visit_concept_id, isouter=True) \
-        .join(visit_discharge, visit_type.concept_id == VisitOccurrence.discharge_to_concept_id, isouter=True)
+        .join(visit_type, VisitOccurrence.visit_concept_id == visit_type.concept_id) \
+        .join(visit_discharge, VisitOccurrence.discharge_to_concept_id == visit_type.concept_id)
 
     response_data = __filter_page__(response_data, param).all()
     response_data = l_convert.convert_dict(response_data)
@@ -99,9 +99,9 @@ def get_condition_occurrence(param, db):
                              condition_concept.concept_name.label('condition_concept_name'),
                              condition_type.concept_name.label('condition_type_name'),
                              condition_status.concept_name.label('condition_status_name'))\
-        .join(condition_type, condition_type.concept_id == ConditionOccurrence.condition_type_concept_id, isouter=True)\
-        .join(condition_concept, condition_concept.concept_id == ConditionOccurrence.condition_concept_id, isouter=True)\
-        .join(condition_status, condition_status.concept_id == ConditionOccurrence.condition_status_concept_id, isouter=True)
+        .join(condition_type, ConditionOccurrence.condition_type_concept_id == condition_type.concept_id)\
+        .join(condition_concept, ConditionOccurrence.condition_concept_id == condition_concept.concept_id)\
+        .join(condition_status, condition_status.concept_id == ConditionOccurrence.condition_status_concept_id)
 
     response_data = __filter_page__(response_data, param).all()
     response_data = l_convert.convert_dict(response_data)
@@ -141,10 +141,10 @@ def get_drug_exposure(param, db):
                              drug_type.concept_name.label('drug_type_name'),
                              drug_concept_source.concept_name.label('drug_concept_source_name'),
                              drug_route_concept.concept_name.label('drug_route_name'))\
-        .join(drug_concept_source, drug_concept_source.concept_id == DrugExposure.drug_source_concept_id, isouter=True)\
-        .join(drug_concept, drug_concept.concept_id == DrugExposure.drug_concept_id, isouter=True)\
-        .join(drug_route_concept, drug_route_concept.concept_id == DrugExposure.route_concept_id, isouter=True)\
-        .join(drug_type, drug_type.concept_id == DrugExposure.drug_type_concept_id, isouter=True)
+        .join(drug_concept_source, drug_concept_source.concept_id == DrugExposure.drug_source_concept_id)\
+        .join(drug_concept, drug_concept.concept_id == DrugExposure.drug_concept_id)\
+        .join(drug_route_concept, drug_route_concept.concept_id == DrugExposure.route_concept_id)\
+        .join(drug_type, drug_type.concept_id == DrugExposure.drug_type_concept_id)
 
     response_data = __filter_page__(response_data, param).all()
     response_data = l_convert.convert_dict(response_data)
@@ -166,8 +166,8 @@ def get_death(param, db):
                              cause_concept.concept_name.label(''),
                              cause_source_concept.concept_name.label('')
                              ) \
-        .join(cause_concept, cause_concept.concept_id == Death.cause_concept_id, isouter=True) \
-        .join(cause_source_concept, cause_source_concept.concept_id == Death.cause_source_concept_id, isouter=True)
+        .join(cause_concept, cause_concept.concept_id == Death.cause_concept_id) \
+        .join(cause_source_concept, cause_source_concept.concept_id == Death.cause_source_concept_id)
 
     response_data = __filter_page__(response_data, param).all()
     response_data = l_convert.convert_dict(response_data)
